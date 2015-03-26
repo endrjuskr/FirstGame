@@ -56,7 +56,7 @@ out/
 
 # Precompiled Headers
 *.gch
-*.pch
+#*.pch
 
 # Compiled Dynamic libraries
 *.so
