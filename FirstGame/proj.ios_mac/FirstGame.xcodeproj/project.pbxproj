@@ -62,6 +62,7 @@
 		7195F6911AC479A2000BD7B8 /* PackTextures.sh in Resources */ = {isa = PBXBuildFile; fileRef = 7195F6901AC479A2000BD7B8 /* PackTextures.sh */; };
 		71F33E951AC8550600CC0F38 /* hd in Resources */ = {isa = PBXBuildFile; fileRef = 71F33E931AC8550600CC0F38 /* hd */; };
 		71F33E961AC8550600CC0F38 /* sd in Resources */ = {isa = PBXBuildFile; fileRef = 71F33E941AC8550600CC0F38 /* sd */; };
+		71F33E9B1AC85BF600CC0F38 /* GameSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71F33E9A1AC85BF600CC0F38 /* GameSprite.cpp */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
@@ -163,6 +164,8 @@
 		7195F6901AC479A2000BD7B8 /* PackTextures.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = PackTextures.sh; path = ../PackTextures.sh; sourceTree = "<group>"; };
 		71F33E931AC8550600CC0F38 /* hd */ = {isa = PBXFileReference; lastKnownFileType = folder; path = hd; sourceTree = "<group>"; };
 		71F33E941AC8550600CC0F38 /* sd */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sd; sourceTree = "<group>"; };
+		71F33E991AC85BE500CC0F38 /* GameSprite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameSprite.h; sourceTree = "<group>"; };
+		71F33E9A1AC85BF600CC0F38 /* GameSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameSprite.cpp; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -304,6 +307,8 @@
 				46880B8419C43A87006E1F66 /* AppDelegate.cpp */,
 				46880B8519C43A87006E1F66 /* AppDelegate.h */,
 				46880B8619C43A87006E1F66 /* HelloWorldScene.cpp */,
+				71F33E991AC85BE500CC0F38 /* GameSprite.h */,
+				71F33E9A1AC85BF600CC0F38 /* GameSprite.cpp */,
 				46880B8719C43A87006E1F66 /* HelloWorldScene.h */,
 			);
 			name = Classes;
@@ -530,6 +535,7 @@
 			files = (
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
+				71F33E9B1AC85BF600CC0F38 /* GameSprite.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,

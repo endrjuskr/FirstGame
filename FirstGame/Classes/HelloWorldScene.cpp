@@ -17,6 +17,20 @@ Scene* HelloWorld::createScene()
     return scene;
 }
 
+CCPoint HelloWorld::convertPoint(CCPoint point){
+    auto director = Director::getInstance();
+    auto glview = director->getOpenGLView();
+
+    CCSize frameSize = glview->getFrameSize();
+    if ( fabs(frameSize.width - 1024) < FLT_EPSILON) {
+        return ccp(0.9 * point.x + 47, point.y + 100);
+    }
+    if (fabs(frameSize.width - 1136) < FLT_EPSILON) {
+        return ccp(point.x, point.y - 18);
+    }
+    return point;
+}
+
 // on "init" you need to initialize your instance
 bool HelloWorld::init()
 {
@@ -56,7 +70,52 @@ bool HelloWorld::init()
     
     // Add more here later...
     
+    
+    // load sprites
+    CCSpriteBatchNode *spriteNode = CCSpriteBatchNode::create("sprites.pvr.ccz");
+    this->addChild(spriteNode, 999);
+    CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("sprites.plist");
+    
+    float offset = 155;
+    float startPoint = 85 + offset;
+    
+    
+    
+    auto director = Director::getInstance();
+    auto glview = director->getOpenGLView();
+    
+    
+    
+    CCSize frameSize = glview->getFrameSize();
+    if ( fabs(frameSize.width - 1024) < FLT_EPSILON) {
+        offset = offset * (1024 / 480.0);
+        startPoint = startPoint * (1024 / 480.0) ;
+    }
+    
+    // Add mole2
+    GameSprite *mole2 = GameSprite::gameSpriteWithFile("mole_1.png");
+    mole2->setPosition(HelloWorld::convertPoint(ccp(startPoint, 85)));
+    spriteNode->addChild(mole2);
+    
+    // Add mole1
+    GameSprite *mole1 = GameSprite::gameSpriteWithFile("mole_1.png");
+    mole1->setPosition(HelloWorld::convertPoint(ccpSub(mole2->getPosition(), ccp(offset, mole2->getPositionY() - 85))));
+    spriteNode->addChild(mole1);
+    
+    // Add mole3
+    GameSprite *mole3 = GameSprite::gameSpriteWithFile("mole_1.png");
+    mole3->setPosition(HelloWorld::convertPoint(ccpAdd(mole2->getPosition(), ccp(offset, 85 - mole2->getPositionY()))));
+    spriteNode->addChild(mole3);
+    _moles = CCArray::create(mole1, mole2, mole3, NULL);
+    _moles->retain();
+    
+    
     return true;
+}
+
+HelloWorld::~HelloWorld()
+{
+    CC_SAFE_RELEASE_NULL(_moles);
 }
 
 

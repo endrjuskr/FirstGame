@@ -2,6 +2,7 @@
 #define __HELLOWORLD_SCENE_H__
 
 #include "cocos2d.h"
+#include "GameSprite.h"
 
 USING_NS_CC;
 
@@ -20,8 +21,13 @@ public:
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
     
+    CCPoint convertPoint(CCPoint point);
+    
+    ~HelloWorld();
+    
 private:
     CCSize _winSize;
+    CCArray *_moles;
 };
 
 #endif // __HELLOWORLD_SCENE_H__
