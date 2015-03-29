@@ -27,9 +27,8 @@ public:
     void popMole(GameSprite *mole);
     
     ~HelloWorld();
-    
-    CCAnimation* animationFromPlist_delay(Vector<SpriteFrame *> & animFrames, const char *animPlist, float delay);
-     
+    HelloWorld();
+    Animation* animationFromPlist_delay( Vector<SpriteFrame *> & animFrames, const char *animPlist, float delay);
     
 private:
     CCSize _winSize;
@@ -38,7 +37,9 @@ private:
     // Inside head file of HelloWorld
     CCAnimation*		laughAnim;
     CCAnimation*		hitAnim;
- 
+    
+    
+    Vector<SpriteFrame *> animFrames;
 
 };
 

@@ -2,6 +2,13 @@
 
 USING_NS_CC;
 
+HelloWorld::HelloWorld(): animFrames(10)
+{
+    
+}
+
+
+
 Scene* HelloWorld::createScene()
 {
     // 'scene' is an autorelease object
@@ -55,17 +62,42 @@ void HelloWorld::tryPopMoles(float dt){
 
 
 CCAnimation* HelloWorld::animationFromPlist_delay(Vector<SpriteFrame *> & animFrames, const char *animPlist, float delay){
-    CCArray *animImages = CCArray::createWithContentsOfFile(animPlist);
     
-    for (int i = 0; i < animImages->count(); i++) {
-        CCString *temp = (CCString *)animImages->objectAtIndex(i);
-        const char *animImage = temp->getCString();
-        auto cache = SpriteFrameCache::getInstance();
-        auto elem = cache -> spriteFrameByName(animImage);
-        animFrames.pushBack(elem);
+    CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(animPlist);
+    CCAnimation *moleAnimation = CCAnimation::create();
+    
+    for (int i = 1 ; i < 4 ; ++i )
+    {
+        
+        std::stringstream ss;
+        ss << "mole_laugh" << i  << ".png";
+        
+        std::string name = ss.str();
+        CCSpriteFrame* sprite =  CCSpriteFrameCache::sharedSpriteFrameCache()->getSpriteFrameByName(name.c_str());
+        moleAnimation->addSpriteFrame(sprite);
+        
     }
-    
-    return CCAnimation::createWithSpriteFrames(animFrames, delay);
+    return moleAnimation;
+//    auto animate = Animate::create(animation);
+//    sprite->runAction(animate);
+//    
+//    
+//    
+//    __Array *animImages = CCArray::createWithContentsOfFile(animPlist);
+//    __Array animFrames1;
+//    
+//    for (int i = 0; i < animImages->count(); i++) {
+//        CCString *temp = (CCString *)animImages->objectAtIndex(i);
+//        const char *animImage = temp->getCString();
+//        auto cache = SpriteFrameCache::getInstance();
+//        auto elem = cache -> spriteFrameByName(animImage);
+//        elem->retain();
+//        animFrames.pushBack(elem);
+//    }
+//    
+//    auto anim = Animation::createWithSpriteFrames(animFrames, delay);
+//    anim->retain();
+//    return anim;
 }
 
 // on "init" you need to initialize your instance
@@ -147,43 +179,15 @@ bool HelloWorld::init()
     _moles->retain();
     
     
-    
     this->schedule(schedule_selector(HelloWorld::tryPopMoles), 0.5);
     
+    laughAnim = this->animationFromPlist_delay(animFrames, "laughAnim.plist", 0.1);
+    CCAnimationCache::sharedAnimationCache()->addAnimation(laughAnim, "laughAnim");;
     
-//    //laughAnim = this->animationFromPlist_delay("laughAnim.plist", 0.1);
-//    //hitAnim = this->animationFromPlist_delay("hitAnim.plist", 0.02);
-//    
-//    
-//    
-//    CCArray *animImages = CCArray::createWithContentsOfFile("laughAnim.plist");
-//    Vector<SpriteFrame *> animFrames;
-//    
-//    
-//    
-//    for (int i = 0; i < animImages->count(); i++) {
-//        CCString *temp = (CCString *)animImages->objectAtIndex(i);
-//        const char *animImage = temp->getCString();
-//        auto cache = SpriteFrameCache::getInstance();
-//        auto elem = cache -> spriteFrameByName(animImage);
-//        animFrames.pushBack(elem);
-//    }
-//    
-//    laughAnim = Animation::createWithSpriteFrames(animFrames, 0.1);
-//    
-//    CCAnimationCache::sharedAnimationCache()->addAnimation(laughAnim, "laughAnim");
-    //CCAnimationCache::sharedAnimationCache()->addAnimation(hitAnim, "hitAnim");
-    
-    Vector<SpriteFrame *> hitAnimFrames;
-    laughAnim = this->animationFromPlist_delay(hitAnimFrames, "laughAnim.plist", 0.1);
-    auto cache = AnimationCache::getInstance();
-    cache -> addAnimation(laughAnim, "laughAnim");
-    
-    //hitAnimFrames.clear();
     
 //    hitAnim = this->animationFromPlist_delay(hitAnimFrames, "hitAnim.plist", 0.02);
 //    CCAnimationCache::sharedAnimationCache()->addAnimation(hitAnim, "hitAnim");
-//    
+    
     return true;
 }
 
