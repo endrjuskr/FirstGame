@@ -34,9 +34,11 @@ CCPoint HelloWorld::convertPoint(CCPoint point){
 void HelloWorld::popMole(GameSprite *mole){
     CCMoveBy *moveUp = CCMoveBy::create(0.2, ccp(0, _winSize.height * 0.25));
     CCEaseInOut *easeMoveUp = CCEaseInOut::create(moveUp, 3.0);
-    CCDelayTime *delay = CCDelayTime::create(0.5);
+    CCAnimation *laughN = CCAnimationCache::sharedAnimationCache()->animationByName("laughAnim");
+    laughN->setRestoreOriginalFrame(true);
+    CCAnimate *laugh = CCAnimate::create(laughN);
     CCAction *easeMoveDown = easeMoveUp->reverse();
-    mole->runAction(CCSequence::create(easeMoveUp, delay, easeMoveDown, NULL));
+    mole->runAction(CCSequence::create(easeMoveUp, laugh, easeMoveDown, NULL));
 }
 
 void HelloWorld::tryPopMoles(float dt){
@@ -49,6 +51,22 @@ void HelloWorld::tryPopMoles(float dt){
             }
         }
     }
+}
+
+
+Animation* HelloWorld::animationFromPlist_delay(const char *animPlist, float delay)
+{
+    ValueVector animImages = FileUtils::getInstance()->getValueVectorFromFile(animPlist);
+    Animation *moleAnimation = CCAnimation::create();
+    
+    for (int i = 1 ; i < animImages.size(); ++i )
+    {
+        std::string name = animImages.at(i).asString();
+        SpriteFrame* sprite = SpriteFrameCache::getInstance()->getSpriteFrameByName(name.c_str());
+        moleAnimation->addSpriteFrame(sprite);
+    }
+    moleAnimation->setDelayPerUnit(delay);
+    return moleAnimation;
 }
 
 // on "init" you need to initialize your instance
@@ -130,9 +148,14 @@ bool HelloWorld::init()
     _moles->retain();
     
     
-    
     this->schedule(schedule_selector(HelloWorld::tryPopMoles), 0.5);
     
+    hitAnim = this->animationFromPlist_delay("hitAnim.plist", 0.02);
+    laughAnim = this->animationFromPlist_delay("laughAnim.plist", 0.1);
+    
+    CCAnimationCache::getInstance()->addAnimation(hitAnim, "hitAnim");
+    CCAnimationCache::getInstance()->addAnimation(laughAnim, "laughAnim");;
+
     return true;
 }
 

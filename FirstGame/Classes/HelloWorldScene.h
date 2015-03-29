@@ -27,11 +27,15 @@ public:
     void popMole(GameSprite *mole);
     
     ~HelloWorld();
-     
+    Animation* animationFromPlist_delay(const char *animPlist, float delay);
     
 private:
     CCSize _winSize;
     CCArray *_moles;
+    
+    // Inside head file of HelloWorld
+    Animation*	laughAnim;
+    Animation*	hitAnim;
 };
 
 #endif // __HELLOWORLD_SCENE_H__
