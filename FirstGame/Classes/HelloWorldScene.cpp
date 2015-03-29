@@ -34,9 +34,11 @@ CCPoint HelloWorld::convertPoint(CCPoint point){
 void HelloWorld::popMole(GameSprite *mole){
     CCMoveBy *moveUp = CCMoveBy::create(0.2, ccp(0, _winSize.height * 0.25));
     CCEaseInOut *easeMoveUp = CCEaseInOut::create(moveUp, 3.0);
-    CCDelayTime *delay = CCDelayTime::create(0.5);
+    CCAnimation *laughN = CCAnimationCache::sharedAnimationCache()->animationByName("laughAnim");
+    laughN->setRestoreOriginalFrame(true);
+    CCAnimate *laugh = CCAnimate::create(laughN);
     CCAction *easeMoveDown = easeMoveUp->reverse();
-    mole->runAction(CCSequence::create(easeMoveUp, delay, easeMoveDown, NULL));
+    mole->runAction(CCSequence::create(easeMoveUp, laugh, easeMoveDown, NULL));
 }
 
 void HelloWorld::tryPopMoles(float dt){
@@ -49,6 +51,21 @@ void HelloWorld::tryPopMoles(float dt){
             }
         }
     }
+}
+
+
+CCAnimation* HelloWorld::animationFromPlist_delay(Vector<SpriteFrame *> & animFrames, const char *animPlist, float delay){
+    CCArray *animImages = CCArray::createWithContentsOfFile(animPlist);
+    
+    for (int i = 0; i < animImages->count(); i++) {
+        CCString *temp = (CCString *)animImages->objectAtIndex(i);
+        const char *animImage = temp->getCString();
+        auto cache = SpriteFrameCache::getInstance();
+        auto elem = cache -> spriteFrameByName(animImage);
+        animFrames.pushBack(elem);
+    }
+    
+    return CCAnimation::createWithSpriteFrames(animFrames, delay);
 }
 
 // on "init" you need to initialize your instance
@@ -133,6 +150,40 @@ bool HelloWorld::init()
     
     this->schedule(schedule_selector(HelloWorld::tryPopMoles), 0.5);
     
+    
+//    //laughAnim = this->animationFromPlist_delay("laughAnim.plist", 0.1);
+//    //hitAnim = this->animationFromPlist_delay("hitAnim.plist", 0.02);
+//    
+//    
+//    
+//    CCArray *animImages = CCArray::createWithContentsOfFile("laughAnim.plist");
+//    Vector<SpriteFrame *> animFrames;
+//    
+//    
+//    
+//    for (int i = 0; i < animImages->count(); i++) {
+//        CCString *temp = (CCString *)animImages->objectAtIndex(i);
+//        const char *animImage = temp->getCString();
+//        auto cache = SpriteFrameCache::getInstance();
+//        auto elem = cache -> spriteFrameByName(animImage);
+//        animFrames.pushBack(elem);
+//    }
+//    
+//    laughAnim = Animation::createWithSpriteFrames(animFrames, 0.1);
+//    
+//    CCAnimationCache::sharedAnimationCache()->addAnimation(laughAnim, "laughAnim");
+    //CCAnimationCache::sharedAnimationCache()->addAnimation(hitAnim, "hitAnim");
+    
+    Vector<SpriteFrame *> hitAnimFrames;
+    laughAnim = this->animationFromPlist_delay(hitAnimFrames, "laughAnim.plist", 0.1);
+    auto cache = AnimationCache::getInstance();
+    cache -> addAnimation(laughAnim, "laughAnim");
+    
+    //hitAnimFrames.clear();
+    
+//    hitAnim = this->animationFromPlist_delay(hitAnimFrames, "hitAnim.plist", 0.02);
+//    CCAnimationCache::sharedAnimationCache()->addAnimation(hitAnim, "hitAnim");
+//    
     return true;
 }
 
