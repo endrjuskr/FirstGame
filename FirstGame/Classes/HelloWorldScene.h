@@ -23,7 +23,11 @@ public:
     
     CCPoint convertPoint(CCPoint point);
     
+    void tryPopMoles(float dt);
+    void popMole(GameSprite *mole);
+    
     ~HelloWorld();
+     
     
 private:
     CCSize _winSize;

@@ -31,6 +31,26 @@ CCPoint HelloWorld::convertPoint(CCPoint point){
     return point;
 }
 
+void HelloWorld::popMole(GameSprite *mole){
+    CCMoveBy *moveUp = CCMoveBy::create(0.2, ccp(0, _winSize.height * 0.25));
+    CCEaseInOut *easeMoveUp = CCEaseInOut::create(moveUp, 3.0);
+    CCDelayTime *delay = CCDelayTime::create(0.5);
+    CCAction *easeMoveDown = easeMoveUp->reverse();
+    mole->runAction(CCSequence::create(easeMoveUp, delay, easeMoveDown, NULL));
+}
+
+void HelloWorld::tryPopMoles(float dt){
+    GameSprite *mole;
+    for (int i = 0; i < 3; i++) {
+        mole = (GameSprite *)_moles->objectAtIndex(i);
+        if (arc4random() % 3 == 0) {
+            if (mole->numberOfRunningActions() == 0) {
+                this->popMole(mole);
+            }
+        }
+    }
+}
+
 // on "init" you need to initialize your instance
 bool HelloWorld::init()
 {
@@ -73,7 +93,7 @@ bool HelloWorld::init()
     
     // load sprites
     CCSpriteBatchNode *spriteNode = CCSpriteBatchNode::create("sprites.pvr.ccz");
-    this->addChild(spriteNode, 999);
+    this->addChild(spriteNode, 0);
     CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("sprites.plist");
     
     float offset = 155;
@@ -109,6 +129,9 @@ bool HelloWorld::init()
     _moles = CCArray::create(mole1, mole2, mole3, NULL);
     _moles->retain();
     
+    
+    
+    this->schedule(schedule_selector(HelloWorld::tryPopMoles), 0.5);
     
     return true;
 }
