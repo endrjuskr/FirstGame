@@ -4,6 +4,9 @@
 #Java
 *.class
 
+FirstGame/Resources/hd/*
+FirstGame/Resources/sd/*
+
 # XCode
 *.moved-aside
 build/*
