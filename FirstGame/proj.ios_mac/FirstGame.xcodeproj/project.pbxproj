@@ -60,6 +60,9 @@
 		521A8EAA19F11F5000D177D7 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 521A8EA819F11F5000D177D7 /* fonts */; };
 		52B47A471A53D09C004E4C60 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B47A461A53D09B004E4C60 /* Security.framework */; };
 		7195F6911AC479A2000BD7B8 /* PackTextures.sh in Resources */ = {isa = PBXBuildFile; fileRef = 7195F6901AC479A2000BD7B8 /* PackTextures.sh */; };
+		71F09DE31AC9F3BC002E5E20 /* laugh.caf in Resources */ = {isa = PBXBuildFile; fileRef = 71F09DE01AC9F3BC002E5E20 /* laugh.caf */; };
+		71F09DE41AC9F3BC002E5E20 /* ow.caf in Resources */ = {isa = PBXBuildFile; fileRef = 71F09DE11AC9F3BC002E5E20 /* ow.caf */; };
+		71F09DE51AC9F3BC002E5E20 /* whack.caf in Resources */ = {isa = PBXBuildFile; fileRef = 71F09DE21AC9F3BC002E5E20 /* whack.caf */; };
 		71F33E951AC8550600CC0F38 /* hd in Resources */ = {isa = PBXBuildFile; fileRef = 71F33E931AC8550600CC0F38 /* hd */; };
 		71F33E961AC8550600CC0F38 /* sd in Resources */ = {isa = PBXBuildFile; fileRef = 71F33E941AC8550600CC0F38 /* sd */; };
 		71F33E9B1AC85BF600CC0F38 /* GameSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71F33E9A1AC85BF600CC0F38 /* GameSprite.cpp */; };
@@ -164,6 +167,9 @@
 		521A8EA819F11F5000D177D7 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
 		52B47A461A53D09B004E4C60 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		7195F6901AC479A2000BD7B8 /* PackTextures.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = PackTextures.sh; path = ../PackTextures.sh; sourceTree = "<group>"; };
+		71F09DE01AC9F3BC002E5E20 /* laugh.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = laugh.caf; path = ../../../../Downloads/WhackAMoleSounds/laugh.caf; sourceTree = "<group>"; };
+		71F09DE11AC9F3BC002E5E20 /* ow.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = ow.caf; path = ../../../../Downloads/WhackAMoleSounds/ow.caf; sourceTree = "<group>"; };
+		71F09DE21AC9F3BC002E5E20 /* whack.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = whack.caf; path = ../../../../Downloads/WhackAMoleSounds/whack.caf; sourceTree = "<group>"; };
 		71F33E931AC8550600CC0F38 /* hd */ = {isa = PBXFileReference; lastKnownFileType = folder; path = hd; sourceTree = "<group>"; };
 		71F33E941AC8550600CC0F38 /* sd */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sd; sourceTree = "<group>"; };
 		71F33E991AC85BE500CC0F38 /* GameSprite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameSprite.h; sourceTree = "<group>"; };
@@ -293,6 +299,9 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				71F09DE01AC9F3BC002E5E20 /* laugh.caf */,
+				71F09DE11AC9F3BC002E5E20 /* ow.caf */,
+				71F09DE21AC9F3BC002E5E20 /* whack.caf */,
 				71F33E931AC8550600CC0F38 /* hd */,
 				71F33E941AC8550600CC0F38 /* sd */,
 				521A8EA819F11F5000D177D7 /* fonts */,
@@ -490,6 +499,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71F09DE41AC9F3BC002E5E20 /* ow.caf in Resources */,
 				5087E78117EB970100C73F5D /* Icon-120.png in Resources */,
 				5087E78617EB970100C73F5D /* Icon-76.png in Resources */,
 				5087E77F17EB970100C73F5D /* Default@2x.png in Resources */,
@@ -505,11 +515,13 @@
 				521A8EA919F11F5000D177D7 /* fonts in Resources */,
 				7195F6911AC479A2000BD7B8 /* PackTextures.sh in Resources */,
 				50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */,
+				71F09DE31AC9F3BC002E5E20 /* laugh.caf in Resources */,
 				5087E78017EB970100C73F5D /* Icon-114.png in Resources */,
 				50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */,
 				50EF629617ECD46A001EB2F8 /* Icon-40.png in Resources */,
 				5087E78217EB970100C73F5D /* Icon-144.png in Resources */,
 				3EACC98F19EE6D4300EB3C5E /* res in Resources */,
+				71F09DE51AC9F3BC002E5E20 /* whack.caf in Resources */,
 				50EF629817ECD46A001EB2F8 /* Icon-80.png in Resources */,
 				71F33E9F1AC8624400CC0F38 /* hitAnim.plist in Resources */,
 				5087E78417EB970100C73F5D /* Icon-57.png in Resources */,

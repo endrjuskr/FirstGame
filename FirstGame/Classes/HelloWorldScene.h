@@ -29,6 +29,14 @@ public:
     ~HelloWorld();
     Animation* animationFromPlist_delay(const char *animPlist, float delay);
     
+    float converFontSize(float fontSize);
+    
+    
+    void setTappable(cocos2d::Node * sender, void * moleObject);
+    void unSetTappable(cocos2d::Node * sender, void * moleObject);
+    
+    bool onTouchBegan (cocos2d::Touch *touch, cocos2d::Event *event);
+    
 private:
     CCSize _winSize;
     CCArray *_moles;
@@ -36,6 +44,11 @@ private:
     // Inside head file of HelloWorld
     Animation*	laughAnim;
     Animation*	hitAnim;
+    
+    CCLabelTTF*     _label;
+    int             _score;
+    int             _totalSpawns;
+    bool            _gameOver;
 };
 
 #endif // __HELLOWORLD_SCENE_H__
